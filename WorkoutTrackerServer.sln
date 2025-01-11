@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutTrackerServer", "WorkoutTrackerServer\WorkoutTrackerServer.csproj", "{493DB6BC-5B00-49F5-A44B-2151A9A6897D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkoutTrackerServerTests", "WorkoutTrackerServerTests\WorkoutTrackerServerTests.csproj", "{AE8FBCE1-5506-4A0E-B8BB-5CF4A55FADBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{493DB6BC-5B00-49F5-A44B-2151A9A6897D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{493DB6BC-5B00-49F5-A44B-2151A9A6897D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{493DB6BC-5B00-49F5-A44B-2151A9A6897D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE8FBCE1-5506-4A0E-B8BB-5CF4A55FADBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE8FBCE1-5506-4A0E-B8BB-5CF4A55FADBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE8FBCE1-5506-4A0E-B8BB-5CF4A55FADBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE8FBCE1-5506-4A0E-B8BB-5CF4A55FADBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
