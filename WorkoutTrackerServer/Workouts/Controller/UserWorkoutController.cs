@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WorkoutTrackerServer.Workout.Dto;
+using WorkoutTrackerServer.Workouts.Dto;
 
-namespace WorkoutTrackerServer.Workout.Controller;
+namespace WorkoutTrackerServer.Workouts.Controller;
 
 /// <summary>
 /// Operations for a given user's workouts.

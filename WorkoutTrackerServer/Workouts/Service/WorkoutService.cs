@@ -1,4 +1,4 @@
-﻿namespace WorkoutTrackerServer.Workout.Service;
+﻿namespace WorkoutTrackerServer.Workouts.Service;
 
 public class WorkoutService : IWorkoutService
 {
