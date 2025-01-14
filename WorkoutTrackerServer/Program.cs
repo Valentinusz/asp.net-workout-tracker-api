@@ -1,9 +1,13 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using WorkoutTrackerServer.Persistence;
+using WorkoutTrackerServer.Workouts.Repository;
+using WorkoutTrackerServer.Workouts.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,9 +34,15 @@ builder.Services.AddSwaggerGen(config =>
 
     config.CustomOperationIds(apiDescription =>
         apiDescription.TryGetMethodInfo(out var methodInfo) ? methodInfo.Name : null);
-    
+
     config.IncludeXmlComments(Assembly.GetExecutingAssembly());
 });
+
+builder.Services.AddDbContext<DatabaseContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("WorkoutContext")));
+
+builder.Services.AddScoped<IWorkoutService, WorkoutService>();
+builder.Services.AddScoped<IWorkoutRepository, WorkoutRepository>();
 
 var app = builder.Build();
 
@@ -43,7 +53,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(config => { config.DisplayOperationId(); });
 }
 
-app.Logger.LogInformation("Swagger UI running at: ");
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<DatabaseContext>();
+    // DbInitializer.Initialize(context);
+}
 
 app.UseHttpsRedirection();
 

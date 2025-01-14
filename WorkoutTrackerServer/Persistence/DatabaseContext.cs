@@ -9,6 +9,15 @@ namespace WorkoutTrackerServer.Persistence;
 public class DatabaseContext : DbContext
 {
     /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="options"></param>
+    public DatabaseContext(DbContextOptions<DatabaseContext> options)
+        : base(options)
+    {
+    }
+
+    /// <summary>
     /// Workout entities
     /// </summary>
     public DbSet<Workout> Workouts { get; set; }
