@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WorkoutTrackerServer.Workouts.Dto;
+using WorkoutTrackerServer.Workouts.Service;
 
 namespace WorkoutTrackerServer.Workouts.Controller;
 
@@ -10,6 +11,13 @@ namespace WorkoutTrackerServer.Workouts.Controller;
 [Route("users/{userId}/workouts")]
 public class UserWorkoutController
 {
+    private readonly IWorkoutService _workoutService;
+
+    public UserWorkoutController(IWorkoutService workoutService)
+    {
+        _workoutService = workoutService;
+    }
+    
     /// <summary>
     /// Get basic data of the user's workouts from the given time period
     /// </summary>
@@ -18,8 +26,8 @@ public class UserWorkoutController
     /// <param name="to" optional="true">End date of the period to get workouts from (inclusive)</param>
     /// <response code="200"></response>
     [HttpGet]
-    public List<WorkoutDto> GetWorkoutsOfUser([FromRoute] string userId, [FromQuery] DateOnly from, [FromQuery] DateOnly to)
+    public Task<List<WorkoutDto>> GetWorkoutsOfUser([FromRoute] string userId, [FromQuery] DateOnly from, [FromQuery] DateOnly to)
     {
-        return [];
+        return _workoutService.GetWorkoutsAsync();
     }
 }

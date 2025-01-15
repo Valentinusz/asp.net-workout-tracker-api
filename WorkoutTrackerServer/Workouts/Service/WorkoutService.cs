@@ -11,6 +11,11 @@ public class WorkoutService : IWorkoutService
     {
         _workoutRepository = workoutRepository;
     }
+
+    public Task<List<WorkoutDto>> GetWorkoutsAsync()
+    {
+        return _workoutRepository.FindByUserId();
+    }
     
     public void CreateWorkout(CreateWorkoutRequestDto workout)
     {

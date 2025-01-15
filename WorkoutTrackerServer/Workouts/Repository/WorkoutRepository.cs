@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WorkoutTrackerServer.Persistence;
+using WorkoutTrackerServer.Workouts.Dto;
 
 namespace WorkoutTrackerServer.Workouts.Repository;
 
@@ -17,6 +18,20 @@ public class WorkoutRepository : IWorkoutRepository
     public WorkoutRepository(DatabaseContext databaseContext)
     {
         _databaseContext = databaseContext;
+    }
+
+    /// <summary>
+    /// Returns all workouts for the given user.
+    /// </summary>
+    /// <returns></returns>
+    public Task<List<WorkoutDto>> FindByUserId()
+    {
+        return _databaseContext.Workouts
+            .Select(workout => new WorkoutDto
+                {
+                    Id = workout.Id
+                })
+            .ToListAsync();
     }
     
     /// <summary>

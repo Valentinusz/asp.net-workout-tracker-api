@@ -1,10 +1,14 @@
-﻿namespace WorkoutTrackerServer.Workouts.Repository;
+﻿using WorkoutTrackerServer.Workouts.Dto;
+
+namespace WorkoutTrackerServer.Workouts.Repository;
 
 /// <summary>
 /// Repository for <see cref="Workout">Workout</see>.
 /// </summary>
 public interface IWorkoutRepository
 {
+    public Task<List<WorkoutDto>> FindByUserId();
+    
     /// <summary>
     /// Saves the given workout to the database
     /// </summary>
