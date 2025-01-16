@@ -22,6 +22,13 @@ public class WorkoutController : ControllerBase
     {
         _workoutService = workoutService;
     }
+
+    [HttpGet]
+    [Route("{workoutId}", Name = "GetWorkout")]
+    public async Task<ActionResult<WorkoutDto>> GetWorkout(long workoutId)
+    {
+        return Ok();
+    }
     
     /// <summary>
     /// Creates a new workout
@@ -29,10 +36,10 @@ public class WorkoutController : ControllerBase
     /// <param name="body"></param>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
-    public IActionResult CreateWorkout([FromBody] CreateWorkoutRequestDto body)
+    public async Task<ActionResult<CreateWorkoutResponseDto>> CreateWorkout([FromBody] CreateWorkoutRequestDto body)
     {
-        _workoutService.CreateWorkout(body);
+        var response = await _workoutService.CreateWorkout(body);
         
-        return Created();
+        return CreatedAtRoute("GetWorkout", new {workoutId = response.Id}, response);
     }
 }

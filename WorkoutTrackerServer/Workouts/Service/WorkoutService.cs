@@ -17,11 +17,18 @@ public class WorkoutService : IWorkoutService
         return _workoutRepository.FindByUserId();
     }
     
-    public void CreateWorkout(CreateWorkoutRequestDto workout)
+    public async Task<CreateWorkoutResponseDto> CreateWorkout(CreateWorkoutRequestDto createWorkoutRequest)
     {
-        _workoutRepository.Save(new Workout()
+        var workout = new Workout
         {
-            CreatedAt = DateTime.Now
-        });
+            StartTime = DateTime.Now
+        };
+        
+        await _workoutRepository.Save(workout);
+
+        return new CreateWorkoutResponseDto
+        {
+            Id = workout.Id,
+        };
     }
 }

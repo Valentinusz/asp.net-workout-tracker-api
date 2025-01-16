@@ -38,10 +38,10 @@ public class WorkoutRepository : IWorkoutRepository
     /// Saves the workout to the database.
     /// </summary>
     /// <param name="workout"></param>
-    public void Save(Workout workout)
+    public Task<int> Save(Workout workout)
     {
         _databaseContext.Workouts.Add(workout);
         
-        _databaseContext.SaveChanges();
+        return _databaseContext.SaveChangesAsync();
     }
 }

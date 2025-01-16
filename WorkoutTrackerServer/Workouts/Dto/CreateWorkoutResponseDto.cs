@@ -2,5 +2,5 @@
 
 public class CreateWorkoutResponseDto
 {
-    
+    public long Id { get; set; }
 }

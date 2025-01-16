@@ -6,5 +6,5 @@ public interface IWorkoutService
 {
     public Task<List<WorkoutDto>> GetWorkoutsAsync();
     
-    public void CreateWorkout(CreateWorkoutRequestDto workout);
+    public Task<CreateWorkoutResponseDto> CreateWorkout(CreateWorkoutRequestDto createWorkoutRequest);
 }

@@ -13,5 +13,5 @@ public interface IWorkoutRepository
     /// Saves the given workout to the database
     /// </summary>
     /// <param name="workout">Workout entity to save</param>
-    void Save(Workout workout);
+    public Task<int> Save(Workout workout);
 }

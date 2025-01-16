@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WorkoutTrackerServer.WorkoutSets;
 
 namespace WorkoutTrackerServer.Workouts;
 
@@ -12,7 +13,9 @@ public class Workout
     /// </summary>
     [Key]
     public int Id { get; set; }
-    
-    [Required]
-    public DateTime CreatedAt { get; set; }
+
+    [Required] public DateTime StartTime { get; set; }
+
+    public List<WorkoutSet> WorkoutSets { get; set; } = [];
+
 }
