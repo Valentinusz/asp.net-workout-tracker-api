@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using WorkoutTrackerServer.Exercises.Repository;
+using WorkoutTrackerServer.Exercises.Service;
 using WorkoutTrackerServer.Persistence;
 using WorkoutTrackerServer.Workouts.Repository;
 using WorkoutTrackerServer.Workouts.Service;
@@ -43,6 +45,8 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 
 builder.Services.AddScoped<IWorkoutService, WorkoutService>();
 builder.Services.AddScoped<IWorkoutRepository, WorkoutRepository>();
+builder.Services.AddScoped<IExerciseService, ExerciseService>();
+builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
 
 var app = builder.Build();
 
