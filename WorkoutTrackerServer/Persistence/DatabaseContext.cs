@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WorkoutTrackerServer.Exercises;
 using WorkoutTrackerServer.Workouts;
 
 namespace WorkoutTrackerServer.Persistence;
@@ -21,4 +22,6 @@ public class DatabaseContext : DbContext
     /// Workout entities
     /// </summary>
     public DbSet<Workout> Workouts { get; set; }
+    
+    public DbSet<Exercise> Exercises { get; set; }
 }
