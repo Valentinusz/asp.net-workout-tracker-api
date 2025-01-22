@@ -31,12 +31,37 @@ public class ExerciseRepository : IExerciseRepository
             .Take(pageSize)
             .ToListAsync();
         
-        var itemCount = _databaseContext.Exercises.Count();
+        var itemCount = _databaseContext.Exercises.CountAsync();
 
 
         return new Page<ExerciseDto>()
         {
-            Content = await items
+            Content = await items,
+            TotalItems = await itemCount,
+            PageNumber = pageNumber,
+            PageSize = pageSize
         };
+    }
+
+    public Task<ExerciseDto> getExerciseById(int id)
+    {
+        return _databaseContext.Exercises
+            .Select(exercise => new ExerciseDto()
+            {
+                Id = exercise.Id,
+                Name = exercise.Name,
+
+            })
+            .Where(exercise => exercise.Id == id)
+            .FirstAsync();
+    }
+
+    public async Task<long> addExercise(Exercise exercise)
+    { 
+        _databaseContext.Exercises.Add(exercise);
+        
+        await _databaseContext.SaveChangesAsync();
+        
+        return exercise.Id;
     }
 }

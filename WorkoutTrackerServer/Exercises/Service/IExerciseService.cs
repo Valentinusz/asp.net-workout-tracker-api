@@ -5,7 +5,7 @@ namespace WorkoutTrackerServer.Exercises.Service;
 
 public interface IExerciseService
 {
-    Task<Page<ExerciseDto>> GetExercises(uint page, uint pageSize);
+    Task<Page<ExerciseDto>> GetExercises(int page, int pageSize);
     Task<ExerciseDto> GetExercise(long id);
     Task<CreateExerciseResponseDto> CreateExercise(CreateExerciseRequestDto createExerciseRequestDto);
     Task<ExerciseDto> UpdateExercise(long id, UpdateExerciseRequestDto updateExerciseRequestDto);

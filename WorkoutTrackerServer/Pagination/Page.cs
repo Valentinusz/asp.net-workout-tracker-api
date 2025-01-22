@@ -10,6 +10,11 @@ public class Page<T>
     public bool HasPreviousPage => PageNumber > 1;
     public bool HasNextPage => PageNumber < TotalPages;
 
+    public Page()
+    {
+        
+    }
+    
     public Page(IEnumerable<T> content, int count, int pageNumber, int pageSize)
     {
         Content = content;

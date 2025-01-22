@@ -1,13 +1,16 @@
 ﻿using WorkoutTrackerServer.Exercises.Dto;
+using WorkoutTrackerServer.Exercises.Repository;
 using WorkoutTrackerServer.Pagination;
 
 namespace WorkoutTrackerServer.Exercises.Service;
 
 public class ExerciseService : IExerciseService
 {
-    public Task<Page<ExerciseDto>> GetExercises(uint page, uint pageSize)
+    private readonly IExerciseRepository _exerciseRepository;
+    
+    public Task<Page<ExerciseDto>> GetExercises(int page, int pageSize)
     {
-        throw new NotImplementedException();
+        return _exerciseRepository.getPage(page, pageSize);
     }
 
     public Task<ExerciseDto> GetExercise(long id)

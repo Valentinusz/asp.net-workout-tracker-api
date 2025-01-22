@@ -21,7 +21,7 @@ public class ExerciseController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [HttpGet]
-    public Task<Page<ExerciseDto>> GetExercises([FromQuery] uint page, [FromQuery] uint pageSize)
+    public Task<Page<ExerciseDto>> GetExercises([FromQuery] int page, [FromQuery] int pageSize)
     {
         return _exerciseService.GetExercises(page, pageSize);
     }
