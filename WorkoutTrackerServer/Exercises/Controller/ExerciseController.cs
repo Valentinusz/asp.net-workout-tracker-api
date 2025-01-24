@@ -27,17 +27,21 @@ public class ExerciseController : ControllerBase
     }
 
     [HttpGet]
-    [Route("{exerciseId:long}")]
+    [Route("{exerciseId:long}", Name = "GetExercise")]
     public Task<ExerciseDto> GetExerciseById([FromRoute] long exerciseId)
     {
         return _exerciseService.GetExercise(exerciseId);
     }
 
     [HttpPost]
-    public ActionResult<Task<CreateExerciseResponseDto>> CreateExercise(
-        [FromBody] CreateExerciseRequestDto createExerciseRequestDto)
+    public async Task<ActionResult<CreateExerciseResponseDto>> CreateExercise(
+        [FromBody] CreateExerciseRequestDto body)
     {
-        return _exerciseService.CreateExercise(createExerciseRequestDto);
+        Console.WriteLine(body);
+        
+        var response = await _exerciseService.CreateExercise(body);
+        
+        return CreatedAtRoute("GetExercise", new {workoutId = response.Id}, response);
     }
 
     [HttpPut]

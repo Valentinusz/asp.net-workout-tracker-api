@@ -18,9 +18,17 @@ public class ExerciseService : IExerciseService
         throw new NotImplementedException();
     }
 
-    public Task<CreateExerciseResponseDto> CreateExercise(CreateExerciseRequestDto createExerciseRequestDto)
+    public async Task<CreateExerciseResponseDto> CreateExercise(CreateExerciseRequestDto createExerciseRequestDto)
     {
-        throw new NotImplementedException();
+        var exercise = new Exercise()
+        {
+            Name = createExerciseRequestDto.Name
+        };
+        
+        return new CreateExerciseResponseDto
+        {
+            Id = await _exerciseRepository.addExercise(exercise)
+        };
     }
 
     public Task<ExerciseDto> UpdateExercise(long id, UpdateExerciseRequestDto updateExerciseRequestDto)
