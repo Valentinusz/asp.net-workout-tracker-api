@@ -7,7 +7,12 @@ namespace WorkoutTrackerServer.Exercises.Service;
 public class ExerciseService : IExerciseService
 {
     private readonly IExerciseRepository _exerciseRepository;
-    
+
+    public ExerciseService(IExerciseRepository exerciseRepository)
+    {
+        _exerciseRepository = exerciseRepository;
+    }
+
     public Task<Page<ExerciseDto>> GetExercises(int page, int pageSize)
     {
         return _exerciseRepository.getPage(page, pageSize);

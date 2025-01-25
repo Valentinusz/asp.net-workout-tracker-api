@@ -5,12 +5,19 @@ using WorkoutTrackerServer.Pagination;
 
 namespace WorkoutTrackerServer.Exercises.Controller;
 
+/// <summary>
+/// Operations for exercises.
+/// </summary>
 [ApiController]
 [Route("exercises")]
 public class ExerciseController : ControllerBase
 {
     private readonly IExerciseService _exerciseService;
 
+    /// <summary>
+    /// Constructor
+    /// </summary>
+    /// <param name="exerciseService">Exercise service impelmentation</param>
     public ExerciseController(IExerciseService exerciseService)
     {
         _exerciseService = exerciseService;
@@ -41,7 +48,7 @@ public class ExerciseController : ControllerBase
         
         var response = await _exerciseService.CreateExercise(body);
         
-        return CreatedAtRoute("GetExercise", new {workoutId = response.Id}, response);
+        return CreatedAtRoute("GetExercise", new {exerciseId = response.Id}, response);
     }
 
     [HttpPut]
