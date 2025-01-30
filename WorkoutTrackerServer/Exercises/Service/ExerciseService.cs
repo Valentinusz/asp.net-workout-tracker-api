@@ -15,7 +15,7 @@ public class ExerciseService : IExerciseService
 
     public Task<ExerciseDto> GetExercise(long id)
     {
-        throw new NotImplementedException();
+        return _exerciseRepository.getExerciseById(id);
     }
 
     public async Task<CreateExerciseResponseDto> CreateExercise(CreateExerciseRequestDto createExerciseRequestDto)

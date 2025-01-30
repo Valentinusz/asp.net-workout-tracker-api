@@ -43,7 +43,7 @@ public class ExerciseRepository : IExerciseRepository
         };
     }
 
-    public Task<ExerciseDto> getExerciseById(int id)
+    public Task<ExerciseDto> getExerciseById(long id)
     {
         return _databaseContext.Exercises
             .Select(exercise => new ExerciseDto()
