@@ -27,6 +27,7 @@ public class ExerciseRepository : IExerciseRepository
                 Name = exercise.Name,
                 
             })   
+            .OrderBy(exercise => exercise.Name)
             .Skip(pageSize * pageNumber)
             .Take(pageSize)
             .ToListAsync();
