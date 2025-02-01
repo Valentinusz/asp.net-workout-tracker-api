@@ -34,8 +34,7 @@ public class ExerciseRepository : IExerciseRepository
         
         var itemCount = _databaseContext.Exercises.CountAsync();
 
-
-        return new Page<ExerciseDto>()
+        return new Page<ExerciseDto>
         {
             Content = await items,
             TotalItems = await itemCount,

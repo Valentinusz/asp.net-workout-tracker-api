@@ -15,7 +15,6 @@ public class Workout
     public int Id { get; set; }
 
     [Required] public DateTime StartTime { get; set; }
-
+    [Required] public DateTime EndTime { get; set; }
     public List<WorkoutSet> WorkoutSets { get; set; } = [];
-
 }
