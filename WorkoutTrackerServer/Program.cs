@@ -1,6 +1,7 @@
 using System.Reflection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
@@ -40,8 +41,15 @@ builder.Services.AddSwaggerGen(config =>
     config.IncludeXmlComments(Assembly.GetExecutingAssembly());
 });
 
+builder.Services.AddAuthorization();
+
+builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+    .AddEntityFrameworkStores<DatabaseContext>();
+
 builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("WorkoutContext")));
+
+builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddScoped<IWorkoutService, WorkoutService>();
 builder.Services.AddScoped<IWorkoutRepository, WorkoutRepository>();
@@ -56,6 +64,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI(config => { config.DisplayOperationId(); });
 }
+
+app.MapIdentityApi<IdentityUser>();
 
 using (var scope = app.Services.CreateScope())
 {

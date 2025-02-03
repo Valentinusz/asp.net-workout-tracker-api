@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using WorkoutTrackerServer.Exercises;
 using WorkoutTrackerServer.Workouts;
 
@@ -7,7 +9,7 @@ namespace WorkoutTrackerServer.Persistence;
 /// <summary>
 /// Database context
 /// </summary>
-public class DatabaseContext : DbContext
+public class DatabaseContext : IdentityDbContext<IdentityUser>
 {
     /// <summary>
     /// Constructor
