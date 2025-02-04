@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Identity;
 using WorkoutTrackerServer.WorkoutSets;
 
 namespace WorkoutTrackerServer.Workouts;
@@ -17,4 +18,5 @@ public class Workout
     [Required] public DateTime StartTime { get; set; }
     [Required] public DateTime EndTime { get; set; }
     public List<WorkoutSet> WorkoutSets { get; set; } = [];
+    public IdentityUser Author { get; set; }
 }

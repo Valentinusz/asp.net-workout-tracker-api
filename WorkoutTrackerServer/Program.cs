@@ -35,6 +35,25 @@ builder.Services.AddSwaggerGen(config =>
         }
     });
 
+    config.AddSecurityDefinition("token", new OpenApiSecurityScheme
+    {
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        Description = "JWT Authorization header using the Bearer scheme",
+    });
+
+    config.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "token" }
+            },
+            []
+        }
+    });
+
     config.CustomOperationIds(apiDescription =>
         apiDescription.TryGetMethodInfo(out var methodInfo) ? methodInfo.Name : null);
 
@@ -55,6 +74,7 @@ builder.Services.AddScoped<IWorkoutService, WorkoutService>();
 builder.Services.AddScoped<IWorkoutRepository, WorkoutRepository>();
 builder.Services.AddScoped<IExerciseService, ExerciseService>();
 builder.Services.AddScoped<IExerciseRepository, ExerciseRepository>();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

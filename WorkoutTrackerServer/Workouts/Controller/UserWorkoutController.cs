@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WorkoutTrackerServer.Workouts.Dto;
 using WorkoutTrackerServer.Workouts.Service;
 
@@ -26,6 +27,7 @@ public class UserWorkoutController
     /// <param name="to" optional="true">End date of the period to get workouts from (inclusive)</param>
     /// <response code="200"></response>
     [HttpGet]
+    [Authorize]
     public Task<List<WorkoutDto>> GetWorkoutsOfUser([FromRoute] long userId, [FromQuery] DateOnly from, [FromQuery] DateOnly to)
     {
         return _workoutService.GetWorkoutsAsync();

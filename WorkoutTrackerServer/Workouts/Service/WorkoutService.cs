@@ -1,4 +1,6 @@
-﻿using WorkoutTrackerServer.Workouts.Dto;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using WorkoutTrackerServer.Workouts.Dto;
 using WorkoutTrackerServer.Workouts.Repository;
 
 namespace WorkoutTrackerServer.Workouts.Service;
@@ -6,6 +8,8 @@ namespace WorkoutTrackerServer.Workouts.Service;
 public class WorkoutService : IWorkoutService
 {
     private readonly IWorkoutRepository _workoutRepository;
+    
+    private readonly IHttpContextAccessor _httpContextAccessor;
 
     public WorkoutService(IWorkoutRepository workoutRepository)
     {
@@ -25,6 +29,8 @@ public class WorkoutService : IWorkoutService
         };
         
         await _workoutRepository.Save(workout);
+
+        ClaimsPrincipal user = _httpContextAccessor.HttpContext.User;
 
         return new CreateWorkoutResponseDto
         {
